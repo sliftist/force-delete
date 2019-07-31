@@ -22,7 +22,6 @@ namespace ForceDelete
     {
         static void Main(string[] args)
         {
-            args = new string[] { "-n", "-q", @"C:\Users\quent\.vscode\extensions\wallabyjs.wallaby-vscode-1.0.138\projects\dee8e250524b7b64\" };
             using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
             {
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
