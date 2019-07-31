@@ -22,6 +22,7 @@ namespace ForceDelete
     {
         static void Main(string[] args)
         {
+            args = new string[] { "-s", @"dee8e" };
             using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
             {
                 WindowsPrincipal principal = new WindowsPrincipal(identity);
@@ -170,7 +171,11 @@ namespace ForceDelete
                 var obj = new ProcessObj(retObject, argList[0], argList[1], paths);
                 // Only for for a substring of the searchQuery... because titles are only so many characters long (around 87 characters),
                 //  so long strings can't be matched.
-                if (obj.Process.MainWindowTitle.Contains(searchQuery.Substring(0, 86)))
+                if(searchQuery.Length > 86)
+                {
+                    searchQuery = searchQuery.Substring(0, 86);
+                }
+                if (obj.Process.MainWindowTitle.Contains(searchQuery))
                 {
                     foreach(var subProc in GetProcesses(obj.ProcessId, paths))
                     {
